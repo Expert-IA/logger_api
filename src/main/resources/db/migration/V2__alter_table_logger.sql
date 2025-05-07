@@ -1,0 +1,11 @@
+
+ALTER TABLE logger RENAME TO user_tracking;
+
+ALTER TABLE user_tracking ADD COLUMN page_url TEXT NOT NULL;
+ALTER TABLE user_tracking ADD COLUMN event_type VARCHAR(100);
+ALTER TABLE user_tracking ADD COLUMN element_id VARCHAR(255);
+
+
+ALTER TABLE user_tracking ADD COLUMN timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE user_tracking ALTER COLUMN timestamp SET DEFAULT CURRENT_TIMESTAMP;
