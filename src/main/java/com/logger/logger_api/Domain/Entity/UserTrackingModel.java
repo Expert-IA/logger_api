@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Access(AccessType.FIELD)
 public class UserTrackingModel {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
