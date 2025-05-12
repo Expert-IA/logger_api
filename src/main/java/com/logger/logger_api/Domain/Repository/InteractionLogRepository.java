@@ -1,6 +1,6 @@
 package com.logger.logger_api.Domain.Repository;
 
-import com.logger.logger_api.Domain.Entity.UserTrackingModel;
+import com.logger.logger_api.Domain.Entity.UserTracking;
 
 import java.util.List;
 import java.util.UUID;
@@ -8,10 +8,10 @@ import java.util.UUID;
 //isso
 public interface InteractionLogRepository {
 
-    void save(UserTrackingModel interactionLog);
+    void save(UserTracking interactionLog);
 
-    List<UserTrackingModel> findByUserId(UUID userId);
+    List<UserTracking> findByUserId(UUID userId);
 
-    List<UserTrackingModel> findAll();
+    List<UserTracking> findAll();
 
 }
