@@ -16,7 +16,6 @@ public class InteractionLoggerRepositoryAdapter implements InteractionLogReposit
         this.jpaLoggerRepository = jpaLoggerRepository;
     }
 
-
     @Override
     public void save(UserTracking interactionLog) {
         this.jpaLoggerRepository.save(interactionLog);
