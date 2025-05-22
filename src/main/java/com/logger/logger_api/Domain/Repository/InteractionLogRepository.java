@@ -1,5 +1,6 @@
 package com.logger.logger_api.Domain.Repository;
 
+import com.logger.logger_api.Controller.Dtos.UserTrackingDTO;
 import com.logger.logger_api.Domain.Entity.UserTracking;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface InteractionLogRepository {
 
     void Save(UserTracking interactionLog);
 
-    List<UserTracking> findByUserId(UUID userId);
+    List<UserTracking> findByUserId(Long userId);
 
     List<UserTracking> findAll();
 

@@ -6,17 +6,19 @@ import java.time.LocalDateTime;
 public class UserTracking {
 
     private final Long id;
-    private final String pageUrl;
+    private final String pageUrl ;;
     private final EventType eventType;
     private final String elementId;
     private final LocalDateTime timestamp;
+    private final  String logLevel;
 
-    public UserTracking(Long id, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp) {
+    public UserTracking(Long id, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel ) {
         this.id = id;
         this.pageUrl = pageUrl;
         this.eventType = eventType;
         this.elementId = elementId;
         this.timestamp = timestamp;
+        this.logLevel = logLevel;
     }
 
 
@@ -38,5 +40,9 @@ public class UserTracking {
 
     public LocalDateTime getTimestamp() {
         return timestamp;
+    }
+
+    public String getLogLevel() {
+        return logLevel;
     }
 }

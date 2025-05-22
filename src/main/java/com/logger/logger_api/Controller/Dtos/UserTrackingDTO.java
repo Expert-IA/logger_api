@@ -1,31 +1,40 @@
 package com.logger.logger_api.Controller.Dtos;
 
+import com.logger.logger_api.Domain.valueObject.EventType;
+
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class UserTrackingDTO {
 
-    //private UUID id;
-    private UUID userId;
+    private Long id;
     private String action;
     private LocalDateTime timestamp;
+    private final String elementId;;
+    private String pageUrl;
+    private  EventType eventType;
+    private String logLevel;
 
-    public UserTrackingDTO() {
-    }
 
-    public UserTrackingDTO(UUID id, UUID userId, String action, LocalDateTime timestamp) {
-      //  this.id = id;
-        this.userId = userId;
-        this.action = action;
+    public UserTrackingDTO(Long id, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel  ) {
+        this.id = id;
+        this.pageUrl = pageUrl;
+        this.eventType = eventType;
+        this.elementId = elementId;
         this.timestamp = timestamp;
+        this.logLevel = logLevel;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public String getElementId() {
+        return elementId;
     }
 
     public String getAction() {
@@ -36,6 +45,22 @@ public class UserTrackingDTO {
         this.action = action;
     }
 
+    public String getPageUrl() {
+        return pageUrl;
+    }
+
+    public void setPageUrl(String pageUrl) {
+        this.pageUrl = pageUrl;
+    }
+
+    public EventType getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
+    }
+
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
@@ -43,4 +68,14 @@ public class UserTrackingDTO {
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
+
+    public String getLogLevel() {
+        return logLevel;
+    }
+
+    public void setLogLevel(String logLevel) {
+        this.logLevel = logLevel;
+    }
+
+
 }

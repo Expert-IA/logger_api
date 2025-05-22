@@ -9,5 +9,4 @@ public class LoggerApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(LoggerApiApplication.class, args);
 	}
-
 }

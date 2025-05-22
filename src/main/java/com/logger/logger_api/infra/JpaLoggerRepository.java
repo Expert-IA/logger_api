@@ -8,6 +8,6 @@ import java.util.UUID;
 
 public interface JpaLoggerRepository extends JpaRepository<UserTrackingModel, Long> {
 
-    UserTracking findUserById(UUID id);
+    UserTracking findUserById(Long id);
 
 }

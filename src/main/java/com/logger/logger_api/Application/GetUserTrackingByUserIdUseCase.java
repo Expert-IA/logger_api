@@ -14,7 +14,7 @@ public class GetUserTrackingByUserIdUseCase {
         this.repository = repository;
     }
 
-    public List<UserTracking> execute(UUID userId) {
+    public List<UserTracking> execute(Long userId) {
         return repository.findByUserId(userId);
     }
 

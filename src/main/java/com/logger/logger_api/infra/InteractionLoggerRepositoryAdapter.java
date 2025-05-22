@@ -1,6 +1,7 @@
 package com.logger.logger_api.infra;
 
 
+import com.logger.logger_api.Controller.Dtos.UserTrackingDTO;
 import com.logger.logger_api.Domain.Entity.UserTracking;
 import com.logger.logger_api.Domain.Repository.InteractionLogRepository;
 import com.logger.logger_api.infra.Mapper.UserTrackingMapper;
@@ -28,7 +29,7 @@ public class InteractionLoggerRepositoryAdapter implements InteractionLogReposit
     }
 
     @Override
-    public List<UserTracking> findByUserId(UUID userId) {
+    public List<UserTracking> findByUserId(Long userId) {
         this.jpaLoggerRepository.findUserById(userId);
         return List.of();
     }

@@ -4,7 +4,6 @@ import com.logger.logger_api.Application.SaveUserTrackingUseCase;
 import com.logger.logger_api.Controller.Dtos.UserTrackingDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +25,6 @@ public class SaveUserTrackingController {
     @PostMapping()
     public ResponseEntity<Void> saveTracking(@RequestBody UserTrackingDTO dto) {
         saveUserTrackingUseCase.execute(dto);
-        return ResponseEntity.ok().build(); //ver o que isso aqui faz
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

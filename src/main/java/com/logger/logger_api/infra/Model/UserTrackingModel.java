@@ -3,7 +3,8 @@ package com.logger.logger_api.infra.Model;
 
 import com.logger.logger_api.Domain.valueObject.EventType;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
+
 
 import java.time.LocalDateTime;
 
@@ -14,9 +15,11 @@ public class UserTrackingModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "page_url", nullable = false)
+    @Column(name = "page_url", length = 255)
     private String pageUrl;
 
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "event_type", length = 100)
     private EventType eventType;
 
@@ -26,11 +29,18 @@ public class UserTrackingModel {
     @Column(name = "timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime timestamp;
 
-
-    public UserTrackingModel(Long id, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp) {
-    }
+    @Column(name = "log_level", length  = 50  )
+    private String logLevel;
 
     public UserTrackingModel() {}
+    public UserTrackingModel(Long id, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel) {
+        this.id = id;
+        this.pageUrl = pageUrl;
+        this.eventType = eventType;
+        this.elementId = elementId;
+        this.timestamp = timestamp;
+        this.logLevel = logLevel;
+    }
 
     public Long getId() {
         return id;
@@ -50,5 +60,9 @@ public class UserTrackingModel {
 
     public LocalDateTime getTimestamp() {
         return timestamp;
+    }
+
+    public String getLogLevel() {
+        return logLevel;
     }
 }
