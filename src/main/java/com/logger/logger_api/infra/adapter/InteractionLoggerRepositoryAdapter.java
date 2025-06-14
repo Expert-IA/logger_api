@@ -60,6 +60,5 @@ public  class InteractionLoggerRepositoryAdapter implements InteractionLogReposi
         return UserTrackingMapper.toDomain(model);
     }
 
-
 }
 

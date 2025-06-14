@@ -16,16 +16,25 @@ public class UpdateUserTrackingByIdUseCase {
         this.repository = repository;
     }
 
-    public void execute(String userId, UserTrackingDTO updatedTrackingDTO) {
+     public void execute(String userId, UserTrackingDTO updatedTrackingDTO) {
         Long id = Long.valueOf(userId);
 
-        UserTracking existing = repository.findById(id);
+        UserTracking existingLog = repository.findById(id);
+        if (existingLog == null) {
+            throw new RuntimeException("UserTracking not found with ID: " + userId);
+        }
 
-        UserTracking updatedDomain = UserTrackingMapper.mapToDomain(updatedTrackingDTO);
 
+        UserTracking updatedLog = new UserTracking(
+                existingLog.getId(),
+                updatedTrackingDTO.getUserId(),
+                updatedTrackingDTO.getPageUrl(),
+                updatedTrackingDTO.getEventType(),
+                updatedTrackingDTO.getElementId(),
+                updatedTrackingDTO.getTimestamp(),
+                updatedTrackingDTO.getLogLevel()
+        );
 
-
-
-        //repository.Update(UserTrackingMapper.toDomain(existing));
+        repository.Update(updatedLog);
     }
 }
