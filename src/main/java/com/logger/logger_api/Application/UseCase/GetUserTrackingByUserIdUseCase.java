@@ -5,8 +5,11 @@ import com.logger.logger_api.Domain.Entity.UserTracking;
 import com.logger.logger_api.Domain.Repository.InteractionLogRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.springframework.data.projection.EntityProjection.ProjectionType.DTO;
 
 @Component
 public class GetUserTrackingByUserIdUseCase {
@@ -17,27 +20,21 @@ public class GetUserTrackingByUserIdUseCase {
         this.repository = repository;
     }
 
-    public List<UserTrackingDTO> execute(String userId) {
-
+    public UserTracking execute(String userId) {
         try {
-            List<UserTracking> entities = repository.findAllByUserId(userId);
-
-            if (entities.isEmpty()){
-                throw new RuntimeException("Nenhum usuário encontrado");
+            Long id = Long.parseLong(userId);
+            UserTracking entity = repository.findById(id);
+            System.out.println(entity.getId());
+            if (entity == null) {
+                throw new RuntimeException("No UserTracking found for ID: " + userId);
             }
 
-            return entities.stream()
-                    .map(entity -> new UserTrackingDTO(
-                            entity.getId(),
-                            entity.getUserId(),
-                            entity.getPageUrl(),
-                            entity.getEventType(),
-                            entity.getElementId(),
-                            entity.getTimestamp(),
-                            entity.getLogLevel()))
-                    .collect(Collectors.toList());
+            return  entity;
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Invalid ID format: " + userId, e);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error fetching UserTracking", e);
         }
     }
+
 }

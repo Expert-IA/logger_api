@@ -4,6 +4,7 @@ import com.logger.logger_api.Application.UseCase.DeleteUserTrackingById;
 import com.logger.logger_api.Application.UseCase.GetUserTrackingByUserIdUseCase;
 import com.logger.logger_api.Application.UseCase.SaveUserTrackingUseCase;
 import com.logger.logger_api.Application.Dtos.UserTrackingDTO;
+import com.logger.logger_api.Domain.Entity.UserTracking;
 import com.logger.logger_api.application.UpdateUserTrackingByIdUseCase;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -64,12 +65,12 @@ public class LoggerController {
             @ApiResponse(responseCode = "200", description = "Lista de UserTracking retornada"),
             @ApiResponse(responseCode = "404", description = "UserTracking não encontrado")
     })
-    @GetMapping("/get")
-    public List<UserTrackingDTO> getById(
-            @Parameter(description = "ID do usuário para busca", required = true)
+    @GetMapping("/userTracking/get")
+    public UserTracking getById(
             @RequestParam String id) {
         return getUserTrackingByUserIdUseCase.execute(id);
     }
+
 
     @Operation(summary = "Deleta UserTracking pelo ID do usuário")
     @ApiResponses(value = {

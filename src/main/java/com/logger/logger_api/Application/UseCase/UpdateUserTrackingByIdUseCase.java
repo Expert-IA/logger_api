@@ -19,18 +19,13 @@ public class UpdateUserTrackingByIdUseCase {
     public void execute(String userId, UserTrackingDTO updatedTrackingDTO) {
         Long id = Long.valueOf(userId);
 
-        UserTrackingModel existingModel = repository.findById(id);
+        UserTracking existing = repository.findById(id);
 
         UserTracking updatedDomain = UserTrackingMapper.mapToDomain(updatedTrackingDTO);
 
-        existingModel.setUserId(updatedDomain.getUserId());
-        existingModel.setPageUrl(updatedDomain.getPageUrl());
-        existingModel.setEventType(updatedDomain.getEventType());
-        existingModel.setElementId(updatedDomain.getElementId());
-        existingModel.setTimestamp(updatedDomain.getTimestamp());
-        existingModel.setLogLevel(updatedDomain.getLogLevel());
 
 
-        repository.Update(UserTrackingMapper.toDomain(existingModel));
+
+        //repository.Update(UserTrackingMapper.toDomain(existing));
     }
 }

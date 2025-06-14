@@ -11,5 +11,5 @@ public interface InteractionLogRepository {
     void Delete(String userId);
     void Update(UserTracking updatedTracking);
     List<UserTracking> findAllByUserId(String userId);
-    UserTrackingModel findById(Long id);
+    UserTracking findById(Long id);
 }

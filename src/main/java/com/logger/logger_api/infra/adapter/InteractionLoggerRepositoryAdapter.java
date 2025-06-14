@@ -6,6 +6,7 @@ import com.logger.logger_api.Domain.Repository.InteractionLogRepository;
 import com.logger.logger_api.infra.jpa.JpaLoggerRepository;
 import com.logger.logger_api.infra.Mapper.UserTrackingMapper;
 import com.logger.logger_api.infra.Model.UserTrackingModel;
+import java.lang.RuntimeException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public  class InteractionLoggerRepositoryAdapter implements InteractionLogReposi
     @Override
     public void Save(UserTracking interactionLog) {
         UserTrackingModel entitiy = toEntity(interactionLog);
+        System.out.println(entitiy.getPageUrl());
         this.jpaLoggerRepository.save(entitiy);
     }
 
@@ -50,10 +52,14 @@ public  class InteractionLoggerRepositoryAdapter implements InteractionLogReposi
     }
 
     @Override
-    public UserTrackingModel findById(Long id) {
-        return jpaLoggerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("UserTracking with ID " + id + " not found"));
+    public UserTracking findById(Long id) {
+        UserTrackingModel model = jpaLoggerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("UserTracking with ID " + id + " not found"));
+
+        System.out.println(model);
+        return UserTrackingMapper.toDomain(model);
     }
+
 
 }
 

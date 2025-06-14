@@ -34,7 +34,6 @@ public class UserTrackingModel {
     @Column(name = "log_level", length  = 50  )
     private String logLevel;
 
-    public UserTrackingModel() {}
     public UserTrackingModel(Long id, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel) {
         this.id = id;
         this.pageUrl = pageUrl;
@@ -44,7 +43,7 @@ public class UserTrackingModel {
         this.logLevel = logLevel;
     }
 
-    public UserTrackingModel(Long id, String userId, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel) {
+    public UserTrackingModel() {
     }
 
     public Long getId() {
@@ -74,6 +73,7 @@ public class UserTrackingModel {
     public String getUserId() {
         return userId;
     }
+
 
     public void setId(Long id) {
         this.id = id;

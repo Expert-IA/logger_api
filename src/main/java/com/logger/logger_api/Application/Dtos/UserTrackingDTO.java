@@ -8,7 +8,6 @@ public class UserTrackingDTO {
 
     private Long id;
     private String UserId;
-    private String action;
     private LocalDateTime timestamp;
     private final String elementId;;
     private String pageUrl;
@@ -17,7 +16,6 @@ public class UserTrackingDTO {
 
 
     public UserTrackingDTO(Long id,String UserId ,String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel  ) {
-        this.id = id;
         this.UserId = UserId;
         this.pageUrl = pageUrl;
         this.eventType = eventType;
@@ -39,13 +37,7 @@ public class UserTrackingDTO {
         return elementId;
     }
 
-    public String getAction() {
-        return action;
-    }
 
-    public void setAction(String action) {
-        this.action = action;
-    }
 
     public String getPageUrl() {
         return pageUrl;

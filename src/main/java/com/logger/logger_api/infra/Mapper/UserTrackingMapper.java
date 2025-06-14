@@ -22,12 +22,11 @@ public class UserTrackingMapper {
     public static UserTrackingModel toEntity(UserTracking domain) {
         return new UserTrackingModel(
                 domain.getId(),
-                domain.getUserId(),
                 domain.getPageUrl(),
                 domain.getEventType(),
                 domain.getElementId(),
                 domain.getTimestamp(),
-               domain.getLogLevel()
+                domain.getLogLevel()
         );
     }
 

@@ -1,6 +1,7 @@
 package com.logger.logger_api.Application.UseCase;
 
 import com.logger.logger_api.Application.Dtos.UserTrackingDTO;
+import com.logger.logger_api.Domain.Entity.UserTracking;
 import com.logger.logger_api.Domain.Repository.InteractionLogRepository;
 import com.logger.logger_api.infra.adapter.InteractionLoggerRepositoryAdapter;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,13 @@ public class SaveUserTrackingUseCase {
 
     public void execute(UserTrackingDTO userTrackingDto)
     {
-        System.out.println(mapToDomain(userTrackingDto));
-        repository.Save( mapToDomain(userTrackingDto));;
+
+        System.out.println("pageUrl recebido: " + userTrackingDto.getPageUrl());
+        if (userTrackingDto.getPageUrl() == null || userTrackingDto.getPageUrl().isEmpty()) {
+            userTrackingDto.setPageUrl("unknown");
+        }
+       UserTracking teste =  mapToDomain(userTrackingDto);
+        System.out.println(teste.getPageUrl());
+        repository.Save(teste );
     }
 }
