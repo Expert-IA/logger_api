@@ -1,4 +1,4 @@
-package com.logger.logger_api.Controller.Dtos;
+package com.logger.logger_api.Application.Dtos;
 
 import com.logger.logger_api.Domain.valueObject.EventType;
 
@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 public class UserTrackingDTO {
 
     private Long id;
+    private String UserId;
     private String action;
     private LocalDateTime timestamp;
     private final String elementId;;
@@ -15,8 +16,9 @@ public class UserTrackingDTO {
     private String logLevel;
 
 
-    public UserTrackingDTO(Long id, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel  ) {
+    public UserTrackingDTO(Long id,String UserId ,String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel  ) {
         this.id = id;
+        this.UserId = UserId;
         this.pageUrl = pageUrl;
         this.eventType = eventType;
         this.elementId = elementId;
@@ -77,5 +79,11 @@ public class UserTrackingDTO {
         this.logLevel = logLevel;
     }
 
+    public String getUserId() {
+        return UserId;
+    }
 
+    public void setUserId(String userId) {
+        UserId = userId;
+    }
 }

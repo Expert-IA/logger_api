@@ -1,10 +1,11 @@
-package com.logger.logger_api.Application;
+package com.logger.logger_api.Application.UseCase;
 
-import com.logger.logger_api.Controller.Dtos.UserTrackingDTO;
+import com.logger.logger_api.Application.Dtos.UserTrackingDTO;
 import com.logger.logger_api.Domain.Repository.InteractionLogRepository;
-import com.logger.logger_api.infra.InteractionLoggerRepositoryAdapter;
-import com.logger.logger_api.infra.Mapper.UserTrackingMapper;
+import com.logger.logger_api.infra.adapter.InteractionLoggerRepositoryAdapter;
 import org.springframework.stereotype.Component;
+
+import static com.logger.logger_api.infra.Mapper.UserTrackingMapper.mapToDomain;
 
 @Component
 public class SaveUserTrackingUseCase {
@@ -18,6 +19,7 @@ public class SaveUserTrackingUseCase {
 
     public void execute(UserTrackingDTO userTrackingDto)
     {
-        repository.Save( UserTrackingMapper.mapTOdomain(userTrackingDto));;
+        System.out.println(mapToDomain(userTrackingDto));
+        repository.Save( mapToDomain(userTrackingDto));;
     }
 }

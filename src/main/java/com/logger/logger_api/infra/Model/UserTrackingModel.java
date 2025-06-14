@@ -15,9 +15,11 @@ public class UserTrackingModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "user_id", length = 255)
+    private String userId;
+
     @Column(name = "page_url", length = 255)
     private String pageUrl;
-
 
     @Enumerated(EnumType.STRING)
     @Column(name = "event_type", length = 100)
@@ -42,6 +44,9 @@ public class UserTrackingModel {
         this.logLevel = logLevel;
     }
 
+    public UserTrackingModel(Long id, String userId, String pageUrl, EventType eventType, String elementId, LocalDateTime timestamp, String logLevel) {
+    }
+
     public Long getId() {
         return id;
     }
@@ -64,5 +69,37 @@ public class UserTrackingModel {
 
     public String getLogLevel() {
         return logLevel;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setLogLevel(String logLevel) {
+        this.logLevel = logLevel;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public void setElementId(String elementId) {
+        this.elementId = elementId;
+    }
+
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
+    }
+
+    public void setPageUrl(String pageUrl) {
+        this.pageUrl = pageUrl;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
