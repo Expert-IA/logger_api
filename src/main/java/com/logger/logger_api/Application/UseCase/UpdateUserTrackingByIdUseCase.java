@@ -1,4 +1,4 @@
-package com.logger.logger_api.application;
+package com.logger.logger_api.Application.UseCase;
 
 import com.logger.logger_api.Application.Dtos.UserTrackingDTO;
 import com.logger.logger_api.Domain.Entity.UserTracking;
@@ -17,24 +17,29 @@ public class UpdateUserTrackingByIdUseCase {
     }
 
      public void execute(String userId, UserTrackingDTO updatedTrackingDTO) {
-        Long id = Long.valueOf(userId);
+       try{
+           Long id = Long.valueOf(userId);
+           UserTracking existingLog = repository.findById(id);
+           if (existingLog == null) {
+               throw new RuntimeException("UserTracking not found with ID: " + userId);
+           }
 
-        UserTracking existingLog = repository.findById(id);
-        if (existingLog == null) {
-            throw new RuntimeException("UserTracking not found with ID: " + userId);
-        }
+           UserTracking updatedLog = new UserTracking(
+                   existingLog.getId(),
+                   updatedTrackingDTO.getUserId(),
+                   updatedTrackingDTO.getPageUrl(),
+                   updatedTrackingDTO.getEventType(),
+                   updatedTrackingDTO.getElementId(),
+                   updatedTrackingDTO.getTimestamp(),
+                   updatedTrackingDTO.getLogLevel()
+           );
 
+           repository.Update(updatedLog);
+       } catch (Exception e) {
+           {
+               throw new RuntimeException("erro atualizando");
+           }
+       }
 
-        UserTracking updatedLog = new UserTracking(
-                existingLog.getId(),
-                updatedTrackingDTO.getUserId(),
-                updatedTrackingDTO.getPageUrl(),
-                updatedTrackingDTO.getEventType(),
-                updatedTrackingDTO.getElementId(),
-                updatedTrackingDTO.getTimestamp(),
-                updatedTrackingDTO.getLogLevel()
-        );
-
-        repository.Update(updatedLog);
     }
 }

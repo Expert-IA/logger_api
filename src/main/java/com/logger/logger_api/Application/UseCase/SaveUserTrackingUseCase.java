@@ -20,13 +20,14 @@ public class SaveUserTrackingUseCase {
 
     public void execute(UserTrackingDTO userTrackingDto)
     {
-
-        System.out.println("pageUrl recebido: " + userTrackingDto.getPageUrl());
-        if (userTrackingDto.getPageUrl() == null || userTrackingDto.getPageUrl().isEmpty()) {
-            userTrackingDto.setPageUrl("unknown");
+        try{
+            if (userTrackingDto.getPageUrl() == null || userTrackingDto.getPageUrl().isEmpty()) {
+                userTrackingDto.setPageUrl("unknown");
+            }
+            UserTracking log =  mapToDomain(userTrackingDto);
+            repository.Save(log );
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao salvar usuário");
         }
-       UserTracking teste =  mapToDomain(userTrackingDto);
-        System.out.println(teste.getPageUrl());
-        repository.Save(teste );
     }
 }

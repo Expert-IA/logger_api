@@ -4,8 +4,9 @@ import com.logger.logger_api.Application.UseCase.DeleteUserTrackingById;
 import com.logger.logger_api.Application.UseCase.GetUserTrackingByUserIdUseCase;
 import com.logger.logger_api.Application.UseCase.SaveUserTrackingUseCase;
 import com.logger.logger_api.Application.Dtos.UserTrackingDTO;
+import com.logger.logger_api.Application.UseCase.UpdateUserTrackingByIdUseCase;
 import com.logger.logger_api.Domain.Entity.UserTracking;
-import com.logger.logger_api.application.UpdateUserTrackingByIdUseCase;
+
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -50,7 +51,8 @@ public class LoggerController {
     @Operation(summary = "Salva um UserTracking")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "UserTracking criado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida")
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
+            @ApiResponse(responseCode = "500", description = "Erro ao salvar")
     })
     @PostMapping("/save")
     public ResponseEntity<Void> saveTracking(
@@ -63,7 +65,8 @@ public class LoggerController {
     @Operation(summary = "Busca UserTracking pelo ID do usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Lista de UserTracking retornada"),
-            @ApiResponse(responseCode = "404", description = "UserTracking não encontrado")
+            @ApiResponse(responseCode = "404", description = "UserTracking não encontrado"),
+            @ApiResponse(responseCode = "500", description = "Erro ao listar usuário")
     })
     @GetMapping("/userTracking/get")
     public UserTracking getById(
@@ -81,18 +84,15 @@ public class LoggerController {
     public ResponseEntity<String> deleteUserTracking(
             @Parameter(description = "ID do usuário a ser deletado", required = true)
             @PathVariable String userId) {
-        try {
             deleteUserTrackingById.execute(userId);
             return ResponseEntity.ok("User with ID " + userId + " was successfully deleted.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error deleting user: " + e.getMessage());
-        }
     }
 
     @Operation(summary = "Atualiza UserTracking pelo ID do usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "UserTracking atualizado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização")
+            @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização"),
+            @ApiResponse(responseCode = "500", description = "Erro ao atualizar")
     })
     @PutMapping("/update/{userId}")
     public ResponseEntity<String> updateUserTracking(

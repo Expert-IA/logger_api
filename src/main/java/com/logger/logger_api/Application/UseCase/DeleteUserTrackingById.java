@@ -1,5 +1,6 @@
 package com.logger.logger_api.Application.UseCase;
 
+import com.logger.logger_api.Domain.Entity.UserTracking;
 import com.logger.logger_api.Domain.Repository.InteractionLogRepository;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,16 @@ public class DeleteUserTrackingById {
     }
 
     public void execute(String userId){
-        this.repository.Delete(userId);
-        return;
+        try{
+            Long id = Long.parseLong(userId);
+            UserTracking entity = repository.findById(id);
+            if (entity == null) {
+                throw new RuntimeException("No UserTracking found for ID: " + userId);
+            }
+        }catch (Exception e){
+             throw new RuntimeException("erro ao deletar usuário");
+        }
+
+
     }
 }
