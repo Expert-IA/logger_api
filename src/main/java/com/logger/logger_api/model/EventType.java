@@ -1,4 +1,4 @@
-package com.logger.logger_api.Domain.valueObject;
+package com.logger.logger_api.model;
 
 public enum EventType {
     BUTTON_CLICK,
