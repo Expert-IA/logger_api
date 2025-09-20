@@ -26,13 +26,16 @@ jobs:
       - name: Run application
         run: |
           nohup mvn spring-boot:run &
-          sleep 20 # pequena pausa inicial
+          sleep 10 # pequena pausa inicial
 
       - name: Wait for port 8080
-        uses: jakejarvis/wait-for-actions@v2
-        with:
-          timeout: 90
-          url: http://localhost:8080
+        run: |
+          for i in {1..30}; do
+            nc -z localhost 8080 && echo "App is up!" && break
+            echo "Waiting for app on port 8080..."
+            sleep 3
+          done
+          nc -z localhost 8080 || (echo "App did not start on port 8080" && exit 1)
 
   zap-scan:
     name: ZAP DAST Scan
