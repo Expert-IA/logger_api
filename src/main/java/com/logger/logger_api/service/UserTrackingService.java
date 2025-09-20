@@ -43,10 +43,21 @@ public class UserTrackingService {
 
     @Transactional(readOnly = true)
     public List<UserTrackingResponse> findByUserId(String userId) {
+        System.out.println("DEBUG: Buscando registros para userId: " + userId);
         List<UserTracking> entities = repository.findByUserIdOrderByTimestampDesc(userId);
-        return entities.stream()
+        System.out.println("DEBUG: Encontrados " + entities.size() + " registros no banco");
+
+        for (int i = 0; i < entities.size(); i++) {
+            UserTracking entity = entities.get(i);
+            System.out.println("DEBUG: Registro " + (i+1) + " - ID: " + entity.getId() + ", UserId: " + entity.getUserId() + ", Timestamp: " + entity.getTimestamp());
+        }
+
+        List<UserTrackingResponse> responses = entities.stream()
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
+
+        System.out.println("DEBUG: Retornando " + responses.size() + " responses");
+        return responses;
     }
 
     @Transactional(readOnly = true)

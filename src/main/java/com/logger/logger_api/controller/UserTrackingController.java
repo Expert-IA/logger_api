@@ -43,12 +43,6 @@ public class UserTrackingController {
         return ResponseEntity.ok(responses);
     }
 
-    @GetMapping
-    public ResponseEntity<Page<UserTrackingResponse>> findAll(Pageable pageable) {
-        Page<UserTrackingResponse> responses = service.findAll(pageable);
-        return ResponseEntity.ok(responses);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<UserTrackingResponse> update(@PathVariable String id,
                                                        @Valid @RequestBody UserTrackingRequest request) {
