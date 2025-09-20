@@ -119,11 +119,11 @@ classDiagram
         +setUpdatedAt(LocalDateTime) void
     }
 
-    UserTracking ||--|| EventType : uses
-    UserTrackingRequest ||--|| EventType : uses
-    UserTrackingResponse ||--|| EventType : uses
-    UserTrackingRequest --|> UserTracking : maps to
-    UserTracking --|> UserTrackingResponse : maps to
+    UserTracking --> EventType : uses
+    UserTrackingRequest --> EventType : uses
+    UserTrackingResponse --> EventType : uses
+    UserTrackingRequest ..> UserTracking : maps to
+    UserTracking ..> UserTrackingResponse : maps to
 ```
 
 ## Especificações das Entidades
