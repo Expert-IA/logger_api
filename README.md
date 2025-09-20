@@ -2,6 +2,16 @@
 
 API para gerenciamento de rastreamento de usuários e logs de interação, desenvolvida com Spring Boot seguindo as melhores práticas de Clean Architecture.
 
+## VÍDEO FUNCIONAMENTO
+https://youtu.be/VZ_vldpQCtA
+
+## INTEGRANTES
+Enricco Rossi de Souza Carvalho Miranda - RM551717
+Gabriel Marquez Trevisan - RM99227
+Guilherme Silva dos Santos - RM551168
+Samuel Ramos de Almeida - RM99134
+Laura Claro Mathias - RM98747
+
 ## 📋 Índice
 
 - [Características](#características)
